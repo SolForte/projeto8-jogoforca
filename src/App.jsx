@@ -21,6 +21,7 @@ export default function App() {
   const [palavraOculta,setPalavraOculta]=useState([])
   const [disabled, setDisabled] = useState(true)
   const [selecionadas, setSelecionadas] = useState([])
+  //const [reveladas, setReveladas]=useState([])
 
   function gameStart(){
     //Fonte: https://www.programiz.com/javascript/examples/get-random-item
@@ -33,14 +34,27 @@ export default function App() {
     setErro(0)
     setDisabled(false)
     setSelecionadas([])
-
-    console.log(palavraAleatoria)
-    console.log(palavraDividida)
-    console.log(palavraDivididaOculta)
+    //setReveladas([])
+    //console.log(palavraAleatoria)
+    //console.log(palavraDividida)
+    //console.log(palavraDivididaOculta)
   }
 
   function palpite(letra){
     setSelecionadas([...selecionadas, letra]) //copia e adiciona a letra ao array
+    if (palavra.includes(letra)){
+      //setReveladas(palavraOculta)
+      const reveladas = [...palavraOculta]
+      palavra.forEach(
+        (elemento, index)=>{
+          if (elemento===letra){
+            reveladas[index]=palavra[index]
+          }
+        }
+      )
+      setPalavraOculta(reveladas)
+    }
+
   }
 
   return (
