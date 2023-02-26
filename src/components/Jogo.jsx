@@ -12,13 +12,13 @@ export default function Jogo(props){
     }
     x()
     return (
-        <div>
-            <div>
+        <div className="Jogo">
+            <div className="forca">
                 <img src={forca[erro]} alt={altDescription}/>
             </div>
-            <div>
-                <button onClick={jogar}>
-                    Escolher palavra
+            <div className="display">
+                <button onClick={jogar} className="play">
+                    Escolher Palavra
                 </button>
                 <p>
                     {

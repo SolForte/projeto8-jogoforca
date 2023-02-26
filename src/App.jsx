@@ -39,15 +39,16 @@ export default function App() {
   }
 
   return (
-    <div>
+    <div className="App">
       <Jogo
         forca={imagem}
         erro={erro}
         jogar={() => gameStart()} 
         oculta={palavraOculta}
-        disabled={disabled}
-      />
-      <Letras alfabeto={alfabeto}/>
+        disabled={disabled}/>
+      <Letras
+        alfabeto={alfabeto}
+        disabled={disabled}/>
     </div>
   );
 }
