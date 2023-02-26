@@ -7,7 +7,7 @@ export default function Letras(props){
         {alfabeto.map(
             (letra, index) =>
             <button className="keyboard__key" key={index}>
-                {letra}
+                {letra.toUpperCase()}
             </button>
         )}
     </div>

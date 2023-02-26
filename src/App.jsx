@@ -8,6 +8,7 @@ import forca3 from "./assets/img/forca3.png"
 import forca4 from "./assets/img/forca4.png"
 import forca5 from "./assets/img/forca5.png"
 import forca6 from "./assets/img/forca6.png"
+import palavras from "./palavras";
 import { useState } from "react";
 
 const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
@@ -15,11 +16,26 @@ const imagem = [forca0,forca1,forca2,forca3,forca4,forca5,forca6]
 
 export default function App() {
 
-  const [image, setImage] = useState(image[0]);
+  const [erro, setErro] = useState(0);
+  const [palavra,setPalavra]=useState([])
+
+  function gameStart(){
+    //Fonte: https://www.programiz.com/javascript/examples/get-random-item
+    const randomIndex = Math.floor(Math.random() * palavras.length);
+    const palavraAleatoria = palavras[randomIndex];
+    const palavraDividida = palavraAleatoria.split("")
+    setPalavra(palavraDividida)
+    setErro(0)
+  }
 
   return (
     <div>
-      <Jogo/>
+      <Jogo
+        forca={imagem}
+        erro={erro}
+        jogar={() => gameStart()} 
+        palavra={palavra}
+      />
       <Letras alfabeto={alfabeto}/>
     </div>
   );
