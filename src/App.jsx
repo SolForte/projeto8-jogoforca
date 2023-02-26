@@ -18,14 +18,24 @@ export default function App() {
 
   const [erro, setErro] = useState(0);
   const [palavra,setPalavra]=useState([])
+  const [palavraOculta,setPalavraOculta]=useState([])
+  const [disabled, setDisabled] = useState(true)
 
   function gameStart(){
     //Fonte: https://www.programiz.com/javascript/examples/get-random-item
     const randomIndex = Math.floor(Math.random() * palavras.length);
     const palavraAleatoria = palavras[randomIndex];
     const palavraDividida = palavraAleatoria.split("")
+    const palavraDivididaOculta = palavraDividida.map(()=>("_"))
     setPalavra(palavraDividida)
+    setPalavraOculta(palavraDivididaOculta)
     setErro(0)
+    setDisabled(false)
+
+
+    console.log(palavraAleatoria)
+    console.log(palavraDividida)
+    console.log(palavraDivididaOculta)
   }
 
   return (
@@ -34,7 +44,8 @@ export default function App() {
         forca={imagem}
         erro={erro}
         jogar={() => gameStart()} 
-        palavra={palavra}
+        oculta={palavraOculta}
+        disabled={disabled}
       />
       <Letras alfabeto={alfabeto}/>
     </div>

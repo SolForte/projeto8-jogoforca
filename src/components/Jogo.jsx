@@ -1,5 +1,5 @@
 export default function Jogo(props){
-    const {forca, erro, jogar, palavra} = props
+    const {forca, erro, jogar, oculta, disabled} = props
     let altDescription = undefined
     const x = function (){
         if(erro === 0){
@@ -20,6 +20,12 @@ export default function Jogo(props){
                 <button onClick={jogar}>
                     Escolher palavra
                 </button>
+                <p>
+                    {
+                        //(condition) ? (exprIfTrue) : (exprIfFalse)
+                        (disabled) ? ("") : (oculta.join(" "))
+                    }
+                </p>
             </div>
         </div>
     )
