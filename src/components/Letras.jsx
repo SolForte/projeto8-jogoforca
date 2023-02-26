@@ -3,10 +3,10 @@ import React from "react";
 export default function Letras(props){
     const {alfabeto}=props
     return(
-    <div>
+    <div className="keyboard">
         {alfabeto.map(
             (letra, index) =>
-            <button key={index}>
+            <button className="keyboard__key" key={index}>
                 {letra}
             </button>
         )}
