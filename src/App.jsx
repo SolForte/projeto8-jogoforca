@@ -20,6 +20,7 @@ export default function App() {
   const [palavra,setPalavra]=useState([])
   const [palavraOculta,setPalavraOculta]=useState([])
   const [disabled, setDisabled] = useState(true)
+  const [selecionadas, setSelecionadas] = useState([])
 
   function gameStart(){
     //Fonte: https://www.programiz.com/javascript/examples/get-random-item
@@ -31,11 +32,15 @@ export default function App() {
     setPalavraOculta(palavraDivididaOculta)
     setErro(0)
     setDisabled(false)
-
+    setSelecionadas([])
 
     console.log(palavraAleatoria)
     console.log(palavraDividida)
     console.log(palavraDivididaOculta)
+  }
+
+  function palpite(letra){
+    setSelecionadas([...selecionadas, letra]) //copia e adiciona a letra ao array
   }
 
   return (
@@ -48,7 +53,9 @@ export default function App() {
         disabled={disabled}/>
       <Letras
         alfabeto={alfabeto}
-        disabled={disabled}/>
+        disabled={disabled}
+        selecionadas={selecionadas}
+        palpite={palpite}/>
     </div>
   );
 }
