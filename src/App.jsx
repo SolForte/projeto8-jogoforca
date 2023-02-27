@@ -118,7 +118,9 @@ export default function App() {
         disabled={disabled}
         selecionadas={selecionadas}
         palpite={palpite}
-        gameEnd={gameEnd}/>
+        gameEnd={gameEnd}
+        win={win}
+        lose={lose}/>
     </div>
   );
 }

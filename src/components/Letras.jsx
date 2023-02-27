@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Letras(props){
-    const {alfabeto, disabled, selecionadas, palpite, gameEnd}=props
+    const {alfabeto, disabled, selecionadas, palpite, gameEnd, win, lose}=props
 
     return(
     <div className="Letras">
@@ -17,7 +17,7 @@ export default function Letras(props){
 //(false || true) : true
 //(true || false) :true
 //(true || true) : true
-            disabled={disabled || selecionadas.includes(letra) || gameEnd}
+            disabled={disabled || selecionadas.includes(letra) || win || lose}
             onClick={()=>palpite(letra)}>
                 {letra.toUpperCase()}
             </button>

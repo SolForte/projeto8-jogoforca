@@ -1,5 +1,5 @@
 export default function Jogo(props){
-    const {forca, erro, jogar, oculta, disabled, win, lose, gameEnd} = props
+    const {forca, erro, jogar, oculta, disabled, win, lose} = props
     let altDescription = undefined
     const imageDescript = function (){
         if(erro === 0){
