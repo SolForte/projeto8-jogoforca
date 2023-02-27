@@ -14,7 +14,11 @@ import { useState } from "react";
 const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 const imagem = [forca0,forca1,forca2,forca3,forca4,forca5,forca6]
 
+let iteracao = 0
+
 export default function App() {
+
+  const [interact, setInteract] = useState(iteracao)
 
   const [erro, setErro] = useState(0);
   const [palavra,setPalavra]=useState([])
@@ -36,11 +40,20 @@ export default function App() {
     setSelecionadas([])
     //setReveladas([])
     //console.log(palavraAleatoria)
-    //console.log(palavraDividida)
+    console.log(palavraDividida)
     //console.log(palavraDivididaOculta)
   }
 
   function palpite(letra){
+
+/* console.log(
+`Function Start:
+  Iteração: ${iteracao}
+  State Interact: ${interact}`)
+
+    iteracao=iteracao+1
+    setInteract(iteracao) */
+
     setSelecionadas([...selecionadas, letra]) //copia e adiciona a letra ao array
     if (palavra.includes(letra)){
       //setReveladas(palavraOculta)
@@ -52,8 +65,31 @@ export default function App() {
           }
         }
       )
+
+      if (reveladas.every((element, index)=> element === palavra[index])){
+        console.log("Epic win")
+      }
+
       setPalavraOculta(reveladas)
+
+    } else if (erro<imagem.length-1){
+      setErro(erro + 1)
+      /* console.log(erro) */
+      if (erro+1>=imagem.length-1){
+        console.log("You lose!")
+      }
     }
+    
+    
+    /* else if (erro===imagem.length-1){
+      console.log("You lose!")
+    } */
+
+
+/*     console.log(
+`Function End:
+  Iteração: ${iteracao}
+  State Interact: ${interact}`) */
 
   }
 

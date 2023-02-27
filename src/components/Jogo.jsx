@@ -6,6 +6,8 @@ export default function Jogo(props){
             altDescription="Imagem da forca com nenhum erro"
         }else if (erro === 1){
             altDescription=`Imagem da forca com ${erro} erro`
+        }else if (erro === 6){
+            altDescription=`Imagem da forca com ${erro} erros. Você perdeu o jogo`
         }else{
             altDescription=`Imagem da forca com ${erro} erros`
         }
