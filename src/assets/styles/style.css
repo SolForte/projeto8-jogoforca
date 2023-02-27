@@ -76,3 +76,12 @@
     color: #798A9F;
     background: #9FAAB5;
 }
+div p.green{
+    color: green;
+}
+div p.red{
+    color: red;
+}
+div p.black{
+    color: black;
+}

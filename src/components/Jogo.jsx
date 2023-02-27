@@ -1,6 +1,7 @@
 export default function Jogo(props){
     const {forca, erro, jogar, oculta, disabled, win, lose} = props
     let altDescription = undefined
+    let check = undefined
     const imageDescript = function (){
         if(erro === 0){
             altDescription="Imagem da forca com nenhum erro"
@@ -12,7 +13,17 @@ export default function Jogo(props){
             altDescription=`Imagem da forca com ${erro} erros`
         }
     }
+    const classCheck = function (){
+        if(win===true){
+            check = "green"
+        }else if(lose===true){
+            check = "red"
+        }else{
+            check= "black"
+        }
+    }
     imageDescript()
+    classCheck()
     return (
         <div className="Jogo">
             <div className="forca">
@@ -22,7 +33,7 @@ export default function Jogo(props){
                 <button onClick={jogar} className="play">
                     Escolher Palavra
                 </button>
-                <p>
+                <p className={check}>
                     {
                         //(condition) ? (exprIfTrue) : (exprIfFalse)
                         (disabled) ? ("") : (oculta.join(" "))

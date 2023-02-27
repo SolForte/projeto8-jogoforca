@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Letras(props){
-    const {alfabeto, disabled, selecionadas, palpite, gameEnd, win, lose}=props
+    const {alfabeto, disabled, selecionadas, palpite, win, lose}=props
 
     return(
     <div className="Letras">
