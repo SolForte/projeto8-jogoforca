@@ -40,12 +40,7 @@ const alfabeto = [
   "z",
 ];
 const imagem = [forca0, forca1, forca2, forca3, forca4, forca5, forca6];
-
-/* let iteracao = 0 */
-
 export default function App() {
-  /*  const [interact, setInteract] = useState(iteracao) */
-
   const [erro, setErro] = useState(0);
   const [palavra, setPalavra] = useState([]);
   const [palavraOculta, setPalavraOculta] = useState([]);
@@ -53,10 +48,7 @@ export default function App() {
   const [selecionadas, setSelecionadas] = useState([]);
   const [win, setWin] = useState(false);
   const [lose, setLose] = useState(false);
-  //const [gameEnd, setGameEnd] = useState(true)
-  //const [reveladas, setReveladas]=useState([])
-
-  function gameStart() {
+ function gameStart() {
     //Fonte: https://www.programiz.com/javascript/examples/get-random-item
     const randomIndex = Math.floor(Math.random() * palavras.length);
     const palavraAleatoria = palavras[randomIndex];
@@ -69,25 +61,12 @@ export default function App() {
     setSelecionadas([]);
     setWin(false);
     setLose(false);
-    //setGameEnd(false)
-    //setReveladas([])
-    //console.log(palavraAleatoria)
-    //console.log(palavraDividida)
-    //console.log(palavraDivididaOculta)
   }
 
-  function palpite(letra) {
-    /* console.log(
-`Function Start:
-  Iteração: ${iteracao}
-  State Interact: ${interact}`)
-
-    iteracao=iteracao+1
-    setInteract(iteracao) */
-
-    setSelecionadas([...selecionadas, letra]); //copia e adiciona a letra ao array
+function palpite(letra) {
+   //copia e adiciona a letra ao array
+    setSelecionadas([...selecionadas, letra]);
     if (palavra.includes(letra)) {
-      //setReveladas(palavraOculta)
       const reveladas = [...palavraOculta];
       palavra.forEach((elemento, index) => {
         if (elemento === letra) {
@@ -96,31 +75,17 @@ export default function App() {
       });
 
       if (reveladas.every((element, index) => element === palavra[index])) {
-        //console.log("You win")
         setWin(true);
-        //setGameEnd(true)
       }
 
       setPalavraOculta(reveladas);
     } else if (erro < imagem.length - 1) {
       setErro(erro + 1);
-      /* console.log(erro) */
       if (erro + 1 >= imagem.length - 1) {
-        //console.log("You lose!")
         setLose(true);
         setPalavraOculta(palavra);
-        //setGameEnd(true)
       }
     }
-
-    /* else if (erro===imagem.length-1){
-      console.log("You lose!")
-    } */
-
-    /*     console.log(
-`Function End:
-  Iteração: ${iteracao}
-  State Interact: ${interact}`) */
   }
 
   return (
@@ -133,14 +98,13 @@ export default function App() {
         disabled={disabled}
         win={win}
         lose={lose}
-        //gameEnd={gameEnd}
+        tentativas={imagem.length-1}
       />
       <Letras
         alfabeto={alfabeto}
         disabled={disabled}
         selecionadas={selecionadas}
         palpite={palpite}
-        //gameEnd={gameEnd}
         win={win}
         lose={lose}
       />
