@@ -61,6 +61,7 @@ export default function App() {
     setSelecionadas([]);
     setWin(false);
     setLose(false);
+    console.log(palavraAleatoria)
   }
 
 function palpite(letra) {
@@ -70,7 +71,7 @@ function palpite(letra) {
       const reveladas = [...palavraOculta];
       palavra.forEach((elemento, index) => {
         //Fonte: https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
-        if (elemento.normalize("NFD").replace(/[\u0300-\u036f]/g,'')===letra) {
+        if (elemento.normalize("NFD").replace(/[\u0300-\u036f]/g,'') === letra) {
           reveladas[index] = palavra[index];
         }
       });
