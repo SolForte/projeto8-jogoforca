@@ -69,7 +69,8 @@ function palpite(letra) {
     if (palavra.includes(letra)) {
       const reveladas = [...palavraOculta];
       palavra.forEach((elemento, index) => {
-        if (elemento.normalize("NFD").replace(/[\u0300-\u036f]/g, '') === letra) {
+        //Fonte: https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
+        if (elemento.normalize("NFD").replace(/[\u0300-\u036f]/g,'')===letra) {
           reveladas[index] = palavra[index];
         }
       });
