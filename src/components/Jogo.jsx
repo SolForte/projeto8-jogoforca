@@ -1,7 +1,7 @@
 export default function Jogo(props){
-    const {forca, erro, jogar, oculta, disabled} = props
+    const {forca, erro, jogar, oculta, disabled, win, lose, gameEnd} = props
     let altDescription = undefined
-    const x = function (){
+    const imageDescript = function (){
         if(erro === 0){
             altDescription="Imagem da forca com nenhum erro"
         }else if (erro === 1){
@@ -12,7 +12,7 @@ export default function Jogo(props){
             altDescription=`Imagem da forca com ${erro} erros`
         }
     }
-    x()
+    imageDescript()
     return (
         <div className="Jogo">
             <div className="forca">

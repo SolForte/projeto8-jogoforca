@@ -14,17 +14,20 @@ import { useState } from "react";
 const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 const imagem = [forca0,forca1,forca2,forca3,forca4,forca5,forca6]
 
-let iteracao = 0
+/* let iteracao = 0 */
 
 export default function App() {
 
-  const [interact, setInteract] = useState(iteracao)
+ /*  const [interact, setInteract] = useState(iteracao) */
 
   const [erro, setErro] = useState(0);
   const [palavra,setPalavra]=useState([])
   const [palavraOculta,setPalavraOculta]=useState([])
   const [disabled, setDisabled] = useState(true)
   const [selecionadas, setSelecionadas] = useState([])
+  const [win, setWin] = useState(false)
+  const [lose,setLose] = useState(false)
+  const [gameEnd, setGameEnd] = useState(true)
   //const [reveladas, setReveladas]=useState([])
 
   function gameStart(){
@@ -38,6 +41,9 @@ export default function App() {
     setErro(0)
     setDisabled(false)
     setSelecionadas([])
+    setWin(false)
+    setLose(false)
+    setGameEnd(false)
     //setReveladas([])
     //console.log(palavraAleatoria)
     console.log(palavraDividida)
@@ -67,7 +73,9 @@ export default function App() {
       )
 
       if (reveladas.every((element, index)=> element === palavra[index])){
-        console.log("Epic win")
+        console.log("You win")
+        setWin(true)
+        setGameEnd(true)
       }
 
       setPalavraOculta(reveladas)
@@ -77,6 +85,8 @@ export default function App() {
       /* console.log(erro) */
       if (erro+1>=imagem.length-1){
         console.log("You lose!")
+        setLose(true)
+        setGameEnd(true)
       }
     }
     
@@ -90,7 +100,6 @@ export default function App() {
 `Function End:
   Iteração: ${iteracao}
   State Interact: ${interact}`) */
-
   }
 
   return (
@@ -100,12 +109,16 @@ export default function App() {
         erro={erro}
         jogar={() => gameStart()} 
         oculta={palavraOculta}
-        disabled={disabled}/>
+        disabled={disabled}
+        win={win}
+        lose={lose}
+        gameEnd={gameEnd}/>
       <Letras
         alfabeto={alfabeto}
         disabled={disabled}
         selecionadas={selecionadas}
-        palpite={palpite}/>
+        palpite={palpite}
+        gameEnd={gameEnd}/>
     </div>
   );
 }
