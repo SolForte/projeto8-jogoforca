@@ -63,15 +63,12 @@ export default function App() {
     setWin(false);
     setLose(false);
     setPalavraBruta(palavraAleatoria)
-    console.log(palavraAleatoria)
-    console.log(palavraAleatoria.normalize("NFD").replace(/\p{Diacritic}/gu, ""))
   }
 
 function palpite(letra) {
    //copia e adiciona a letra ao array
     setSelecionadas([...selecionadas, letra]);
     const normal = palavraBruta.normalize("NFD").replace(/\p{Diacritic}/gu, "")
-    console.log(normal)
     if (normal.includes(letra)) {
       const reveladas = [...palavraOculta];
       palavra.forEach((elemento, index) => {
