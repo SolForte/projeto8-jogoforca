@@ -1,58 +1,83 @@
 import React from "react";
 import Letras from "./components/Letras";
-import Jogo from "./components/Jogo"; 
-import forca0 from "./assets/img/forca0.png"
-import forca1 from "./assets/img/forca1.png"
-import forca2 from "./assets/img/forca2.png"
-import forca3 from "./assets/img/forca3.png"
-import forca4 from "./assets/img/forca4.png"
-import forca5 from "./assets/img/forca5.png"
-import forca6 from "./assets/img/forca6.png"
+import Jogo from "./components/Jogo";
+import forca0 from "./assets/img/forca0.png";
+import forca1 from "./assets/img/forca1.png";
+import forca2 from "./assets/img/forca2.png";
+import forca3 from "./assets/img/forca3.png";
+import forca4 from "./assets/img/forca4.png";
+import forca5 from "./assets/img/forca5.png";
+import forca6 from "./assets/img/forca6.png";
 import palavras from "./palavras";
 import { useState } from "react";
 
-const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-const imagem = [forca0,forca1,forca2,forca3,forca4,forca5,forca6]
+const alfabeto = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+];
+const imagem = [forca0, forca1, forca2, forca3, forca4, forca5, forca6];
 
 /* let iteracao = 0 */
 
 export default function App() {
-
- /*  const [interact, setInteract] = useState(iteracao) */
+  /*  const [interact, setInteract] = useState(iteracao) */
 
   const [erro, setErro] = useState(0);
-  const [palavra,setPalavra]=useState([])
-  const [palavraOculta,setPalavraOculta]=useState([])
-  const [disabled, setDisabled] = useState(true)
-  const [selecionadas, setSelecionadas] = useState([])
-  const [win, setWin] = useState(false)
-  const [lose,setLose] = useState(false)
-  const [gameEnd, setGameEnd] = useState(true)
+  const [palavra, setPalavra] = useState([]);
+  const [palavraOculta, setPalavraOculta] = useState([]);
+  const [disabled, setDisabled] = useState(true);
+  const [selecionadas, setSelecionadas] = useState([]);
+  const [win, setWin] = useState(false);
+  const [lose, setLose] = useState(false);
+  //const [gameEnd, setGameEnd] = useState(true)
   //const [reveladas, setReveladas]=useState([])
 
-  function gameStart(){
+  function gameStart() {
     //Fonte: https://www.programiz.com/javascript/examples/get-random-item
     const randomIndex = Math.floor(Math.random() * palavras.length);
     const palavraAleatoria = palavras[randomIndex];
-    const palavraDividida = palavraAleatoria.split("")
-    const palavraDivididaOculta = palavraDividida.map(()=>("_"))
-    setPalavra(palavraDividida)
-    setPalavraOculta(palavraDivididaOculta)
-    setErro(0)
-    setDisabled(false)
-    setSelecionadas([])
-    setWin(false)
-    setLose(false)
-    setGameEnd(false)
+    const palavraDividida = palavraAleatoria.split("");
+    const palavraDivididaOculta = palavraDividida.map(() => "_");
+    setPalavra(palavraDividida);
+    setPalavraOculta(palavraDivididaOculta);
+    setErro(0);
+    setDisabled(false);
+    setSelecionadas([]);
+    setWin(false);
+    setLose(false);
+    //setGameEnd(false)
     //setReveladas([])
     //console.log(palavraAleatoria)
-    console.log(palavraDividida)
+    //console.log(palavraDividida)
     //console.log(palavraDivididaOculta)
   }
 
-  function palpite(letra){
-
-/* console.log(
+  function palpite(letra) {
+    /* console.log(
 `Function Start:
   Iteração: ${iteracao}
   State Interact: ${interact}`)
@@ -60,43 +85,39 @@ export default function App() {
     iteracao=iteracao+1
     setInteract(iteracao) */
 
-    setSelecionadas([...selecionadas, letra]) //copia e adiciona a letra ao array
-    if (palavra.includes(letra)){
+    setSelecionadas([...selecionadas, letra]); //copia e adiciona a letra ao array
+    if (palavra.includes(letra)) {
       //setReveladas(palavraOculta)
-      const reveladas = [...palavraOculta]
-      palavra.forEach(
-        (elemento, index)=>{
-          if (elemento===letra){
-            reveladas[index]=palavra[index]
-          }
+      const reveladas = [...palavraOculta];
+      palavra.forEach((elemento, index) => {
+        if (elemento === letra) {
+          reveladas[index] = palavra[index];
         }
-      )
+      });
 
-      if (reveladas.every((element, index)=> element === palavra[index])){
-        console.log("You win")
-        setWin(true)
-        setGameEnd(true)
+      if (reveladas.every((element, index) => element === palavra[index])) {
+        //console.log("You win")
+        setWin(true);
+        //setGameEnd(true)
       }
 
-      setPalavraOculta(reveladas)
-
-    } else if (erro<imagem.length-1){
-      setErro(erro + 1)
+      setPalavraOculta(reveladas);
+    } else if (erro < imagem.length - 1) {
+      setErro(erro + 1);
       /* console.log(erro) */
-      if (erro+1>=imagem.length-1){
-        console.log("You lose!")
-        setLose(true)
-        setGameEnd(true)
+      if (erro + 1 >= imagem.length - 1) {
+        //console.log("You lose!")
+        setLose(true);
+        setPalavraOculta(palavra);
+        //setGameEnd(true)
       }
     }
-    
-    
+
     /* else if (erro===imagem.length-1){
       console.log("You lose!")
     } */
 
-
-/*     console.log(
+    /*     console.log(
 `Function End:
   Iteração: ${iteracao}
   State Interact: ${interact}`) */
@@ -107,20 +128,22 @@ export default function App() {
       <Jogo
         forca={imagem}
         erro={erro}
-        jogar={() => gameStart()} 
+        jogar={() => gameStart()}
         oculta={palavraOculta}
         disabled={disabled}
         win={win}
         lose={lose}
-        gameEnd={gameEnd}/>
+        //gameEnd={gameEnd}
+      />
       <Letras
         alfabeto={alfabeto}
         disabled={disabled}
         selecionadas={selecionadas}
         palpite={palpite}
-        gameEnd={gameEnd}
+        //gameEnd={gameEnd}
         win={win}
-        lose={lose}/>
+        lose={lose}
+      />
     </div>
   );
 }
