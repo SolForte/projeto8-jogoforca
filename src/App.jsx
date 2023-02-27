@@ -48,6 +48,7 @@ export default function App() {
   const [selecionadas, setSelecionadas] = useState([]);
   const [win, setWin] = useState(false);
   const [lose, setLose] = useState(false);
+  const [palavraBruta,setPalavraBruta] = useState("")
  function gameStart() {
     //Fonte: https://www.programiz.com/javascript/examples/get-random-item
     const randomIndex = Math.floor(Math.random() * palavras.length);
@@ -61,17 +62,21 @@ export default function App() {
     setSelecionadas([]);
     setWin(false);
     setLose(false);
+    setPalavraBruta(palavraAleatoria)
     console.log(palavraAleatoria)
+    console.log(palavraAleatoria.normalize("NFD").replace(/\p{Diacritic}/gu, ""))
   }
 
 function palpite(letra) {
    //copia e adiciona a letra ao array
     setSelecionadas([...selecionadas, letra]);
-    if (palavra.includes(letra)) {
+    const normal = palavraBruta.normalize("NFD").replace(/\p{Diacritic}/gu, "")
+    console.log(normal)
+    if (normal.includes(letra)) {
       const reveladas = [...palavraOculta];
       palavra.forEach((elemento, index) => {
         //Fonte: https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
-        if (elemento.normalize("NFD").replace(/[\u0300-\u036f]/g,'') === letra) {
+        if (elemento.normalize("NFD").replace(/\p{Diacritic}/gu, "") === letra) {
           reveladas[index] = palavra[index];
         }
       });
