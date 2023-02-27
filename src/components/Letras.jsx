@@ -17,6 +17,7 @@ export default function Letras(props) {
             //(true || true) : true
             disabled={disabled || selecionadas.includes(letra) || win || lose}
             onClick={() => palpite(letra)}
+            data-test="letter"
           >
             {letra.toUpperCase()}
           </button>

@@ -27,13 +27,13 @@ export default function Jogo(props) {
     return (
       <div className="Jogo">
         <div className="forca">
-          <img src={forca[erro]} alt={altDescription} />
+          <img src={forca[erro]} alt={altDescription} data-test="game-image"/>
         </div>
         <div className="display">
-          <button onClick={jogar} className="play">
+          <button onClick={jogar} className="play" data-test="choose-word">
             Escolher Palavra
           </button>
-          <p className={check}>{disabled ? "" : oculta.join(" ")}</p>
+          <p className={check} data-test="word">{disabled ? "" : oculta.join(" ")}</p>
         </div>
       </div>
     );
